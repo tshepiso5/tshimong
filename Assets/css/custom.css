@@ -1,0 +1,322 @@
+:root {
+    --ghetto-gold: #FFBF00;
+    --electric-purple: #6A0DAD;
+    --concrete: #121212;
+    --street-gray: #1E1E1E;
+    --off-white: #F8F9FA;
+    --success-green: #00FF41;
+    --danger-red: #FF4D4D;
+    --bone-white: #F5F2ED;
+    --charcoal: #2d2d2d;
+    --light-stone: #EAE7E1;
+    --darker-bone: #b7999b;
+}
+ body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--light-stone);
+    color: var(--charcoal);
+    line-height: 1.3;
+    overflow-x: hidden;
+}
+#counter-cont{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* TYPOGRAPHY */
+.stencil {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+.gold { color: var(--ghetto-gold); }
+.purple { color: var(--electric-purple); }
+
+.tshimong-logo {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem; /* Adjust size to fit your nav height */
+    margin: 0;
+    letter-spacing: -0.5px;
+    /* High-quality dark green/charcoal mix */
+    color: #1b3022; 
+    display: flex;
+    align-items: center;
+}
+
+.logo-accent {
+    color: #2ecc71; /* Tshimong Signature Green */
+    margin-right: 5px;
+}
+
+.logo-sub {
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: #7f8c8d; /* Muted stone grey for "the Dirty Farm" */
+    letter-spacing: 0px;
+}
+
+/* Hover effect for high-end feel */
+.navbar-brand:hover .tshimong-logo {
+    filter: brightness(1.2);
+    transition: 0.3s ease;
+}
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--concrete);
+  display: flex; align-items: center; justify-content: space-between;
+  /*padding: 0 2rem; height: 150px;*/
+  border-bottom: 2px solid var(--gold);
+}
+.nav-logo { font-family: var(--mono); font-size: 0.8rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+.nav-links { display: flex; gap: 0; }
+.nav-link {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(15, 14, 11, 0.55); background: none; border: none; cursor: pointer;
+  padding: 0 1.25rem; height: 56px; display: flex; align-items: center;
+  transition: color 0.2s, background 0.2s; text-decoration: none;
+}
+.nav-link:hover { color: var(--gold-lt); background: rgba(200,134,26,0.08); }
+.nav-link.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+.bottom-nav {
+    position: fixed;
+    top: 500px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 65px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid #eee;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+    background-color: white;
+    
+}
+
+/* Wallet Card Gradient Styling */
+.wallet-card {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    border-radius: 20px;
+    padding: 25px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(46, 204, 113, 0.2);
+}
+
+.wallet-card::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.wallet-header h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.wallet-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Custom Inputs */
+.tshimong-input {
+    background-color: #f8f9fa;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 12px;
+    transition: all 0.2s;
+}
+
+.tshimong-input:focus {
+    background-color: #fff;
+    border-color: #2ecc71;
+    box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.1);
+}
+
+.input-group-text {
+    border-radius: 0 12px 12px 0 !important;
+}
+
+#bottom-nav.nav-hidden {
+  transform: translateY(100%); /* Moves the nav down, off-screen */
+}
+/* This class will be toggled via JavaScript */
+.nav-hidden {
+    transform: translateY(100%);
+}
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.3s ease;
+    width: 100%;
+}
+
+.nav-item i {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+/* Tshimong Table Styling */
+.custom-table-wrapper {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 10px;
+}
+/* Add this to your CSS to prevent background "jumping" */
+body.modal-open {
+    padding-right: 0 !important;
+    overflow: hidden;
+}
+
+.modal-backdrop {
+    width: 100%;
+    height: 100%;
+}
+.custom-tshimong-table {
+    border-collapse: separate;
+    border-spacing: 0 8px; /* Adds space between rows */
+}
+
+.custom-tshimong-table thead th {
+    background-color: #f8f9fa;
+    border: none;
+    color: #6c757d;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 15px;
+}
+
+.custom-tshimong-table tbody tr {
+    transition: transform 0.2s;
+    background-color: #ffffff;
+}
+
+.custom-tshimong-table tbody tr:hover {
+    background-color: #f1f8f4 !important; /* Light green tint for Tshimong branding */
+    transform: scale(1.002);
+}
+
+.custom-tshimong-table td {
+    padding: 15px;
+    border-top: 1px solid #f1f1f1 !important;
+    border-bottom: 1px solid #f1f1f1 !important;
+    vertical-align: middle;
+    color: #444;
+}
+
+/* Category Badges */
+.badge-category {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+/* Specific Category Colors */
+.seeds { background: #e3f2fd; color: #0d47a1; }
+.fertilizer { background: #e8f5e9; color: #1b5e20; }
+.labour { background: #fff3e0; color: #e65100; }
+
+/* Active State - You can trigger this with PHP by checking the current URL */
+.nav-item:hover, .nav-item.active {
+    color: #2e7d32; /* A green shade suitable for an agricultural app */
+}
+
+/* Add padding to the body so content isn't hidden behind the bar */
+body {
+    /*padding-bottom: 70px;*/
+}
+
+/* Container padding */
+.dashboard-container {
+    padding: 15px;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* Tab Header Navigation */
+.tab-box {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: none;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tab-btn.active {
+    color: #198754; /* Success Green */
+    border-bottom: 3px solid #198754;
+}
+
+/* Content visibility */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#profile-img{
+    background-image: url('..\/images/abt.svg');
+    background-repeat: no-repeat;
+    height: 25px;
+    width: 25px;
+    margin: 10px 15px 10px 0;
+}
+
+#logo-img{
+    background-image: url('..\/images/dirtyFarm_logo\ [Recovered].svg');
+    background-repeat: no-repeat;
+    height: 150px;
+    width: 150px;
+    margin: 10px 15px 10px 0;
+}
+
+@media(max-width: 991px){
+    #logo-img{
+        background-size: 75%;
+    }
+
+    .navbar-brand{
+        text-size-adjust: 80%;
+    }
+
+    .navbar-toggler{
+        background-size: 50%;
+    }
+
+}
