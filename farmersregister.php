@@ -51,6 +51,9 @@ include('Includes/navbar.php');
                     <div class="form-group mb-3">
                         <button type="submit" name="register-farmer-btn" class="btn btn-primary">Register </button>
                     </div>
+                    <div class="form-group mb-3">
+                        <p>If Already registered, please <a href="farmerslogin.php">Login</a> instead</p>
+                    </div>
                 </form>
                 
             </div>
