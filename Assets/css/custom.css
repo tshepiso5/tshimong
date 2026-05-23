@@ -10,7 +10,15 @@
     --charcoal: #2d2d2d;
     --light-stone: #EAE7E1;
     --darker-bone: #b7999b;
+    --color-garden-green: #2C5E3B;
+    --color-earth-brown: #4A3728;
+    --color-warm-sand: #F7F5F0;
+    --tshimong-green: #2ecc71;
+    --tshimong-dark-forest: #1b3022;
+    --tshimong-stone: #7f8c8d;
+    --tshimong-bg-light: #f8fcf9;
 }
+
  body {
     font-family: 'Inter', sans-serif;
     background-color: var(--light-stone);
@@ -42,7 +50,108 @@
     display: flex;
     align-items: center;
 }
+/* Card Shell Styling */
+.tshimong-register-card {
+    max-width: 550px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 24px;
+}
 
+/* Typography Overrides */
+.tshimong-logo {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: -0.5px;
+    color: var(--tshimong-dark-forest);
+    display: flex;
+    align-items: center;
+}
+
+.logo-accent {
+    color: var(--tshimong-green);
+    margin-right: 5px;
+}
+
+.logo-sub {
+    font-weight: 400;
+    font-size: 1.3rem;
+    color: var(--tshimong-stone);
+}
+
+.tshimong-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--tshimong-dark-forest);
+    margin-bottom: 6px;
+}
+
+/* Custom Input Modifications */
+.tshimong-input {
+    background-color: var(--tshimong-bg-light);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px !important;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+}
+
+/* Handles input groupings elegantly */
+.input-group .tshimong-input {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.tshimong-icon-box {
+    background-color: var(--tshimong-bg-light);
+    border: 1px solid #e2e8f0;
+    border-right: none;
+    border-radius: 12px 0 0 12px !important;
+    color: var(--tshimong-stone);
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Focus Actions */
+.tshimong-input:focus {
+    background-color: #ffffff;
+    border-color: var(--tshimong-green);
+    box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.12);
+    color: var(--tshimong-dark-forest);
+}
+
+/* Master Action Button */
+.btn-tshimong-primary {
+    background-color: var(--tshimong-green);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 0.2px;
+    transition: all 0.3s ease;
+}
+
+.btn-tshimong-primary:hover {
+    background-color: #27ae60;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(46, 204, 113, 0.25);
+}
+
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+
+/* Native Custom Elements styling */
+.custom-checkbox .form-check-input:checked {
+    background-color: var(--tshimong-green);
+    border-color: var(--tshimong-green);
+}
 .logo-accent {
     color: #2ecc71; /* Tshimong Signature Green */
     margin-right: 5px;
@@ -291,6 +400,14 @@ body {
 }
 
 #profile-img{
+    background-image: url('..\/images/abt.svg');
+    background-repeat: no-repeat;
+    height: 25px;
+    width: 25px;
+    margin: 10px 15px 10px 0;
+}
+
+#customer-profile{
     background-image: url('..\/images/abt.svg');
     background-repeat: no-repeat;
     height: 25px;

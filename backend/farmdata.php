@@ -7,6 +7,7 @@ include('../admin/functions.php');
 if(isset($_POST['update-farm-data'])){
     $cleanPhone = CleanString($con, $_SESSION['auth_user']['phone']);
     $cleanFarmerID = CleanString($con, $_SESSION['auth_user']['id']);
+    $cleanName = CleanString($con, $_POST['farm-name']);
     $cleanAddress = CleanString($con, $_POST['address']);
     $cleanTenure = CleanString($con, $_POST['tenure']);
     $agreement = $_FILES['agreement']['name'];
@@ -57,8 +58,8 @@ if(isset($_POST['update-farm-data'])){
         }
 
         if(!empty($agreement) && $fileExt !=''){
-            $captureFarmData = "INSERT INTO farm_data(farmer_id, land_occupancy_type, occupancy_agreement, farm_address, latitude, longitude) VALUES(?, ?, ?, ?, ?, ?)";
-            $captureRes = mysqli_execute_query($con, $captureFarmData, [$cleanFarmerID, $cleanTenure, $finalAgreementName, $cleanAddress, $lat, $lng]);
+            $captureFarmData = "INSERT INTO farm_data(farmer_id, farm_name, land_occupancy_type, occupancy_agreement, farm_address, latitude, longitude) VALUES(?, ?, ?, ?, ?, ?, ?)";
+            $captureRes = mysqli_execute_query($con, $captureFarmData, [$cleanFarmerID, $cleanName, $cleanTenure, $finalAgreementName, $cleanAddress, $lat, $lng]);
 
             if($captureRes){
                 move_uploaded_file($_FILES['image']['tmp_name'], '../uploads/agreements/'.$finalAgreementName);

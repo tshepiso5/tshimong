@@ -8,7 +8,7 @@ if(isset($_POST['login-btn'])){
 
     CheckEmptyStrings($cleanNumber, 'Phone Number', 'farmerslogin.php');
 
-    $checkFarmer = "SELECT user_id, full_name, phone_number, is_verified FROM farmers WHERE phone_number = ?";
+    $checkFarmer = "SELECT user_id, full_name, phone_number, is_verified, role_as FROM farmers WHERE phone_number = ?";
     $farmerRes = mysqli_execute_query($con, $checkFarmer, [$cleanNumber]);
 
     if(mysqli_num_rows($farmerRes) > 0){
@@ -26,7 +26,8 @@ if(isset($_POST['login-btn'])){
             $_SESSION['auth_user'] = [
                 'id' => $farmerData['user_id'],
                 'name' => $farmerData['full_name'],
-                'phone' => $farmerData['phone_number']
+                'phone' => $farmerData['phone_number'], 
+                'role' => $farmerData['role_as'],
             ];
 
             $_SESSION['message'] = "Welcome, " . $farmerData['full_name'];

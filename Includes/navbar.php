@@ -25,7 +25,16 @@ include('admin/config/dbcon.php');
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto">
-       
+        <li class="nav-item">
+        <a href="" class="nav-link">
+          Home
+        </a>
+       </li>
+       <li class="nav-item">
+        <a href="" class="nav-link">
+          About
+        </a>
+       </li>
        
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,11 +44,16 @@ include('admin/config/dbcon.php');
             
             <?php
               if(isset($_SESSION['auth'])){
+                
                 ?>
-                 <li><form action="logout.php" method="post">
+                  <li>
+                    <form action="logout.php" method="post">
                         <button type="submit" name="logout-btn" class="dropdown-item">Logout</button>
-                    </form></li>
-                 <?php
+                      </form>
+                  </li>
+                <?php
+                
+                
               }else{
                 ?>
                 <li><a class="dropdown-item" href="login.php">Login</a></li>

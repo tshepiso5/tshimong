@@ -8,22 +8,61 @@ include('Includes/navbar.php');
     ?>
 
 <div class="dashboard-container">
-    <!-- Tshimong Styled Tab Navigation -->
-    <div class="tab-box mb-4">
-        <button class="tab-btn active" onclick="openTab(event, 'Wallet')">
-            <i class="bi bi-wallet2"></i> My Wallet
-        </button>
-        <button class="tab-btn" onclick="openTab(event, 'WasteForm')">
-            <i class="bi bi-recycle"></i> Waste Collection
-        </button>
-    </div>
+    <?php
+        $userID = $_SESSION['auth_user']['phone'];
+        $getbalance= "SELECT user_phone, balance FROM wallets WHERE user_phone = ?";
+        $balRes = mysqli_execute_query($con, $getbalance, [$userID]);
+
+        if($_SESSION['auth_user']['role'] == '3'){
+            ?>
+                <!-- Tshimong Styled Tab Navigation -->
+                <div class="tab-box mb-4">
+                    <button class="tab-btn active" onclick="openTab(event, 'Wallet')">
+                        <i class="bi bi-wallet2"></i> My Wallet
+                    </button>
+                    <button class="tab-btn" onclick="openTab(event, 'WasteForm')">
+                        <i class="bi bi-recycle"></i> Waste Collection
+                    </button>
+                </div>
+            <?php
+        }elseif($_SESSION['auth_user']['role']== '4'){
+            
+            ?>
+                <!-- Tshimong Styled Tab Navigation -->
+                <div class="tab-box mb-4">
+                    <button class="tab-btn active" onclick="openTab(event, 'Wallet')">
+                        <i class="bi bi-wallet2"></i> My Wallet
+                    </button>
+                    
+                </div>
+            <?php
+
+            
+        }
+    ?>
+    
+    
 
     <!-- Tab 1: Wallet Balance -->
     <div id="Wallet" class="tab-content active">
         <div class="wallet-card">
             <div class="wallet-header">
-                <span class="text-white-50 small uppercase fw-bold">Available Balance</span>
-                <h2 class="text-white mb-0">R0.00</h2>
+                <?php
+                    if(!mysqli_num_rows($balRes) > 0){
+                        ?>
+                            <span class="text-white-50 small uppercase fw-bold">Available Balance</span>
+                            <h2 class="text-white mb-0">Something Went Wrong</h2>
+                        <?php
+                    }else{
+                        $balData = mysqli_fetch_assoc($balRes);
+                        ?>
+                            <span class="text-white-50 small uppercase fw-bold">Available Balance</span>
+                            <h2 class="text-white mb-0"><?= $balData['balance'] ?></h2>
+                        <?php
+                        
+                    }
+                ?>
+                
             </div>
             <div class="wallet-footer d-flex justify-content-between align-items-center">
                 <div class="points">

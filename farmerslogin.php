@@ -4,6 +4,9 @@ include('Includes/navbar.php');
 ?>
 
 <div class="container">
+    <?php
+        include('message.php');
+    ?>
     <div class="row justify-content-center">
         <div class="col-md-5">
             <div class="card">

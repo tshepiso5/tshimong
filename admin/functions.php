@@ -57,6 +57,27 @@ function ContainsNumbers(string $data){
     
 }
 
+function CreateSlug(string $data){
+
+    
+    $slug = iconv('UTF-8', 'ASCII//TRANSLIT', $data);
+
+    $slug = preg_replace('/[^a-zA-Z0-9\s-]/', '', $slug);
+
+    $slug = strtolower($slug);
+    $slug = preg_replace('/[\s_-]+/', '-', $slug);
+    $slug = trim($slug, '-');
+
+    return $slug;
+
+}
+
+function AddToBalance(float $transactionAmt, float $balance){
+    $effect = $transactionAmt + $balance;
+
+    return $effect;
+}
+
 function CheckforOneDuplicate($con, string $dbVar, string $db, string $data, string $redirectUrl){
     DbAccessWhiteList($db, $dbVar);
 

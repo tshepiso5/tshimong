@@ -21,7 +21,7 @@ if(isset($_POST['iventory-btn'])){
     CheckEmptyStrings($cleanDate, 'Planting Date', '../office.php');
    
     $maxSize = 2 * 1024 * 1024;
-    if($_FILES['soil-image']['size'] > $maxSize){
+    if($_FILES['inventory-img']['size'] > $maxSize){
         $_SESSION['messages'] = "Image Size Too Big";
         header('Location: ../office.php');
         Exit(0);
@@ -37,8 +37,8 @@ if(isset($_POST['iventory-btn'])){
 
     $finalImgName = time()."_".bin2hex(random_bytes(4)).".".$fileExt;
 
-    $checkDups = "SELECT crop, crop_growth_stage, qty FROM inventory WHERE farmer_id = ?";
-    $dupsRes = mysqli_execute_query($con, $checkDups, [$cleanID]);
+    $checkDups = "SELECT crop, crop_growth_stage, qty FROM inventory WHERE farmer_id = ? AND crop = ?";
+    $dupsRes = mysqli_execute_query($con, $checkDups, [$cleanID, $cleanCrop]);
 
     if(mysqli_num_rows($dupsRes) > 0){
         $_SESSION['messages'] = "Crop Record Already Exists";

@@ -1,22 +1,45 @@
+<?php
 
-<nav class="bottom-nav sticky-bottom bg-body-tertiary">
-    <a href="news.php" class="nav-item">
-        <i class="fa-solid fa-feed"></i>
-        <span>News</span>
-    </a>
-    <a href="office.php" class="nav-item">
-        <i class="fa-solid fa-building"></i>
-        <span>Office</span>
-    </a>
-    <a href="wallet.php" class="nav-item">
-        <i class="fa-solid fa-wallet"></i>
-        <span>Wallet</span>
-    </a>
-    <a href="work.php" class="nav-item">
-        <i class="fa-solid fa-briefcase"></i>
-        <span>Work</span>
-    </a>
-</nav>
+if($_SESSION['auth_user']['role'] == '3'){
+    ?>
+        <nav class="bottom-nav sticky-bottom bg-body-tertiary">
+            <a href="news.php" class="nav-item">
+                <i class="fa-solid fa-feed"></i>
+                <span>News</span>
+            </a>
+            <a href="office.php" class="nav-item">
+                <i class="fa-solid fa-building"></i>
+                <span>Office</span>
+            </a>
+            <a href="wallet.php" class="nav-item">
+                <i class="fa-solid fa-wallet"></i>
+                <span>Wallet</span>
+            </a>
+            <a href="work.php" class="nav-item">
+                <i class="fa-solid fa-briefcase"></i>
+                <span>Work</span>
+            </a>
+        </nav>
+    <?php
+}elseif($_SESSION['auth_user']['role'] == '4'){
+    ?>
+        <nav class="bottom-nav sticky-bottom bg-body-tertiary">
+            
+            <a href="products.php" class="nav-item">
+                <i class="fa-solid fa-shopping-cart"></i>
+                <span>Buy</span>
+            </a>
+            <a href="wallet.php" class="nav-item">
+                <i class="fa-solid fa-wallet"></i>
+                <span>Wallet</span>
+            </a>
+            
+        </nav>
+    <?php
+}
+
+?>
+
 
 <style>
     /* 1. Override Bootstrap's sticky-bottom if necessary and set transition */

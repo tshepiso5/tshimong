@@ -1,6 +1,7 @@
 <?php
 include('Includes/header.php');
 include('Includes/navbar.php');
+$usrNum= 3;
 ?>
 
 <div class="container mt-5">
@@ -22,6 +23,8 @@ include('Includes/navbar.php');
                 
                 <form action="backend/farmerregistration.php" method="post">
                     <div class="row">
+
+                        <input type="text" name="role" value="<?= $usrNum ?>" readonly hidden class="form-control">
                     <div class="form-group col-md-6 mb-3">
                         <label>Full Name</label>
                         <input type="text" name="fname" required placeholder="enter full name" class="form-control">

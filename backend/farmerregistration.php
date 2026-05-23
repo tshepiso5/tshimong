@@ -8,6 +8,12 @@ if(isset($_POST['register-farmer-btn'])){
     $cleanAge = CleanString($con, $_POST['age']);
     $cleanGender = CleanString($con, $_POST['gender']);
     $cleanphone = CleanString($con, $_POST['phone']);
+    $cleanRole = CleanString($con, $_POST['role']);
+
+    CheckEmptyStrings($cleanName, 'Full Name', '../farmersregister.php');
+    CheckEmptyStrings($cleanAge, 'Age', '../farmersregister.php');
+    CheckEmptyStrings($cleanGender, 'Gender', '../farmersregister.php');
+    CheckEmptyStrings($cleanphone, 'Phone', '../farmersregister.php');
 
 
     if(empty($cleanphone)) {
@@ -23,20 +29,36 @@ if(isset($_POST['register-farmer-btn'])){
     $result = json_decode($output, true);
 
     if($result && $result['status'] === 'success' && $result['verified'] === true){
-        $verifiedNum = 1;
-        $storeFarmer = "INSERT INTO farmers(full_name, age,	gender, phone_number, is_verified) VALUES(?, ?, ?, ?, ?)";
-        $farmerRes = mysqli_execute_query($con, $storeFarmer, [$cleanName, $cleanAge, $cleanGender, $cleanphone, $verifiedNum]);
 
-        if(!$farmerRes){
+        mysqli_begin_transaction($con);
+
+        try{
+
+            $verifiedNum = 1;
+            $initialTrans = 0;
+            $storeFarmer = "INSERT INTO farmers(full_name, age,	gender, phone_number, is_verified, role_as) VALUES(?, ?, ?, ?, ?, ?)";
+            $farmerRes = mysqli_execute_query($con, $storeFarmer, [$cleanName, $cleanAge, $cleanGender, $cleanphone, $verifiedNum, $cleanRole]);
+
+            $newID = mysqli_insert_id($con);
+        
+
+            $startWallet = "INSERT INTO wallets(user_id,user_phone, wallet_transaction) VALUES(?, ?, ?)";
+            $walletRes = mysqli_execute_query($con, $startWallet, [$newID, $cleanphone, $initialTrans]);
+
+            mysqli_commit($con);
+
+            $_SESSION['message'] = "Registration Successful! Network location mapped.";
+            header("Location: ../farmerslogin.php");
+            exit(0);
+        }catch(Exception $e){
+            mysqli_rollback($con);
+
             $_SESSION['message'] = "Something Went Wrong";
             header("Location: ../farmersregister.php");
             exit(0);
-        }else{
-            $_SESSION['message'] = "Successfully Registered Farmer's Profile. Please Login";
-            header("Location: ../farmersregister.php");
-            exit(0);
-
         }
+        
+        
     }else{
         $_SESSION['message'] = "Identity verification failed. Please ensure your SIM is active.";
         header("Location: ../farmersregister.php");
