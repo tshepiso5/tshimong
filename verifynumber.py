@@ -35,6 +35,11 @@ def verify_phone_number(phone_input):
     except Exception as e:
         return {"status": "error", "message": f"Nokia API Error: {str(e)}"}
 
+# Add this near your other routes
+@app.route('/health', methods=['GET'])
+def health_check():
+    return {"status": "ok"}, 200
+    
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         print(json.dumps(verify_phone_number(sys.argv[1])))
